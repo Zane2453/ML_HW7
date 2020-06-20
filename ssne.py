@@ -175,8 +175,21 @@ def ssne(X=np.array([]), no_dims=2, initial_dims=50, perplexity=30.0):
 
     plot_result(Y, perplexity, max_iter)
 
+    plot_high(P, perplexity)
+    plot_low(Q, perplexity)
+
     # Return solution
     return Y
+
+def plot_high(Probability, perplexity):
+    pylab.clf()
+    pylab.hist(Probability.flatten(), bins=30, log=True)
+    pylab.savefig(f'./Result/s-SNE/high_{perplexity}.png')
+
+def plot_low(Probability, perplexity):
+    pylab.clf()
+    pylab.hist(Probability.flatten(), bins=30, log=True)
+    pylab.savefig(f'./Result/s-SNE/low_{perplexity}.png')
 
 if __name__ == "__main__":
     print("Run Y = ssne(X, no_dims, init_dims, perplexity) to perform s-SNE on your dataset.")

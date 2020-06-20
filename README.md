@@ -31,3 +31,4 @@ python3 main.py
 - https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/357878/
 - https://www.cnblogs.com/ymjyqsx/p/7598066.html
 - https://morvanzhou.github.io/tutorials/data-manipulation/plt/2-3-axis1/
+- http://liyangbit.com/pythonvisualization/matplotlib-top-50-visualizations/

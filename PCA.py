@@ -94,10 +94,10 @@ def kernel_PCA(images, no_dims=25):
 
         predict_result = predict(train_low_images, train_low_images, 5, train_label)
         print(
-            f'Predict result of Training data set is {len(predict_result[predict_result == train_label]) / len(train_label)}')
+            f'Predict result of Training data set using {kernel} kernel is {len(predict_result[predict_result == train_label]) / len(train_label)}')
         predict_result = predict(train_low_images, test_low_images, 5, train_label)
         print(
-            f'Predict result of Testing data set is {len(predict_result[predict_result == test_label]) / len(test_label)}')
+            f'Predict result of Testing data set using {kernel} kernel is {len(predict_result[predict_result == test_label]) / len(test_label)}')
 
 if __name__ == "__main__":
     principle_component = PCA(train_images)
