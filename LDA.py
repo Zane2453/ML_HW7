@@ -15,7 +15,6 @@ def read_images(path):
     dataset, label = list(), list()
     for data in os.listdir(path):
         with Image.open(os.path.join(path, data)).resize((60, 60), Image.ANTIALIAS) as image:
-            # with Image.open(os.path.join(path, data)) as image:
             dataset.append(np.array(image).flatten())
             label.append(int(re.findall("\d+", data)[0]))
 
@@ -70,11 +69,11 @@ def plot_reconstruct(reconstruct, origin, index):
         plt.imshow(origin[idx].reshape((60, 60)), plt.cm.gray)
         plt.savefig(f"{result_path}/origin_{idx}.png")
 
-def plot_eigenfaces(principle_component):
+def plot_fisherfaces(principle_component):
     for idx in range(len(principle_component)):
         plt.clf()
         plt.imshow(principle_component[idx].reshape((60, 60)), plt.cm.gray)
-        plt.savefig(f"{result_path}/eigenfaces_{idx}.png")
+        plt.savefig(f"{result_path}/fisherfaces_{idx}.png")
 
 def predict(train_data, test_data, k, label):
     prd_result = []
@@ -82,9 +81,6 @@ def predict(train_data, test_data, k, label):
         distance = np.linalg.norm(train_data - data, axis=1)
         idx = np.argsort(distance)
         neighbors = label[idx][:k]
-        #neighbors = np.argpartition(distance, -n_neighbors)[-n_neighbors:]# // 9 + 1
-        # n_neighbors = distance.argsort()[-n_neighbors:][::-1]
-        #print (neighbors)
         prd_result.append(np.bincount(neighbors).argmax())
 
     return np.array(prd_result)
@@ -147,15 +143,13 @@ if __name__ == "__main__":
     index = np.random.randint(len(train_images), size=10)
     plot_reconstruct(high_images, train_images, index)
 
-    plot_eigenfaces(principle_component.T)
+    plot_fisherfaces(principle_component.T)
 
     train_low_images = np.dot(train_images, principle_component)
     test_low_images = np.dot(test_images, principle_component)
     predict_result = predict(train_low_images, train_low_images, 5, train_label)
-    # predict_result = predict(train_low_images, train_low_images, 1, train_label)
     print(f'Predict result of Training data set is {len(predict_result[predict_result == train_label]) / len(train_label)}')
     predict_result = predict(train_low_images, test_low_images, 5, train_label)
-    # predict_result = predict(train_low_images, test_low_images, 1, train_label)
     print(f'Predict result of Testing data set is {len(predict_result[predict_result == test_label]) / len(test_label)}')
 
     kernel_LDA(train_images, test_images)

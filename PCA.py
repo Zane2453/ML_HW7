@@ -62,9 +62,6 @@ def predict(train_data, test_data, k, label):
         distance = np.linalg.norm(train_data - data, axis=1)
         idx = np.argsort(distance)
         neighbors = label[idx][:k]
-        #neighbors = np.argpartition(distance, -n_neighbors)[-n_neighbors:]# // 9 + 1
-        # n_neighbors = distance.argsort()[-n_neighbors:][::-1]
-        #print (neighbors)
         prd_result.append(np.bincount(neighbors).argmax())
 
     return np.array(prd_result)
