@@ -2,9 +2,9 @@
 ###### tags: `Course1082`	`IOC5191`
 > 網工所 0856523 許尹睿
 
-Since there are a lot of GIFs to be showed, I place all images in directory Result instead of directly putting all of them in the report.
+Since there are a lot of figures and GIFs to be showed, I place all of them in directory Result instead of directly putting all of them in the report.
 
-Naming Principle for each GIF explained in **Appendix**, which is for TA's convenience.
+Naming Principles for each figure and GIF are explained in **Appendix**, which is for TA's convenience.
 
 ## Kernel Eigenfaces/Fisherfaces
 
@@ -51,7 +51,7 @@ def PCA(images, no_dims=25):
 principle_component = PCA(train_images)
 ```
 **PCA** function extracts the principle components from the images, which are the eigenvectors corresponding to the largest 25 eigenvalues.
-Because <u>images@images.T</u> will be a very large matrix, we find the eigenvalues and eigenvectors of <u>images.T@images</u>. These corresponding eigenvectors then multiply images again to represent the partial eigenvectors of images@images.T.
+Because <u>images.T@images</u> will be a very large matrix, we find the eigenvalues and eigenvectors of <u>images@images.T</u>. These corresponding eigenvectors then be multiplied by images again to represent the partial eigenvectors of images.T@images.
 
 #### Reconstruct the images
 ```python=
@@ -409,7 +409,7 @@ The following figures show the result:
 ![](https://i.imgur.com/lNp3nYq.png)
 
 ### Discussion
-- The different perplexity values I have tried are <u>10, 20, 30, 40, 50, and 60</u>. As the perplexity value increase, the effect of clustering is becoming worse and worse.
+- The different perplexity values I have tried are <u>10, 20, 30, 40, 50, and 60</u>. As the perplexity value increase, the effect of seperating data points is becoming worse and worse.
 - As the figures of result showed, t-SNE can solve the <u>crowding problem</u> which symmetric SNE encountered.
 - Because the distribution of pairwise similarities in low-dimensional space is <u>student-t distribution</u>, its bandwidth is much wider than symmetric SNE. The distribution of pairwise similarities in high-dimensional space is the same in t-SNE and symmetric SNE.
 
